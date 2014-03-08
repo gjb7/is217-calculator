@@ -55,4 +55,60 @@ describe('math', function() {
 			expect(result).to.equal(-1);
 		});
 	});
+	
+	describe('#multiply', function() {
+		it('should multiply two positive numbers', function() {
+			var result = math.multiply(2, 3);
+			
+			expect(result).to.equal(6);
+		});
+		
+		it('should multiply a positive and a negative number', function() {
+			var result = math.multiply(2, -3);
+			
+			expect(result).to.equal(-6);
+		});
+		
+		it('should multiply two negative numbers', function() {
+			var result = math.multiply(-2, -3);
+			
+			expect(result).to.equal(6);
+		});
+		
+		it('should multiply a number by zero', function() {
+			var result = math.multiply(2, 0);
+			
+			expect(result).to.equal(0);
+		});
+	});
+	
+	describe('#divide', function() {
+		it('should divide two positive numbers', function() {
+			var result = math.divide(6, 3);
+			
+			expect(result).to.equal(2);
+		});
+		
+		it('should divide a positive and a negative number', function() {
+			var result = math.divide(6, -3);
+			
+			expect(result).to.equal(-2);
+		});
+		
+		it('should divide two negative numbers', function() {
+			var result = math.divide(-6, -3);
+			
+			expect(result).to.equal(2)
+		});
+		
+		it('should divide by zero (but not really)', function() {
+			var result = math.divide(6, 0);
+			
+			expect(result).to.equal(Number.POSITIVE_INFINITY);
+			
+			var result = math.divide(-6, 0);
+			
+			expect(result).to.equal(Number.NEGATIVE_INFINITY);
+		});
+	});
 });
