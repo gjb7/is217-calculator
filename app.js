@@ -4,7 +4,8 @@
 
 var express = require('express');
 var routes = require('./routes');
-var api = require('./routes/api');
+var API = require('./routes/api').API;
+var math = require('./lib/math');
 var http = require('http');
 var path = require('path');
 
@@ -29,10 +30,12 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 
-app.post('/api/add', api.add);
-app.post('/api/subtract', api.subtract);
-app.post('/api/multiply', api.multiply);
-app.post('/api/divide', api.divide);
+var api = new API();
+api.registerOperation('add', math.add);
+api.registerOperation('subtract', math.subtract);
+api.registerOperation('multiply', math.multiply);
+api.registerOperation('divide', math.divide);
+api.registerRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
