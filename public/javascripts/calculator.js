@@ -6,6 +6,13 @@
 		
 	};
 	
+	Calculator.OPERATIONS = {
+		'+': 'add',
+		'-': 'subtract',
+		'*': 'multiply',
+		'/': 'divide'
+	};
+	
 	Calculator.prototype._setupDefaults = function() {
 		this.result = 0;
 		this.operation = '';
@@ -48,6 +55,12 @@
 	};
 	
 	Calculator.prototype._operationClicked = function(elm) {
+		if (this.currentValue) {
+			var operand = Number(this.currentValue);
+			this.operands.push(operand);
+			this.currentValue = '';
+		}
+		
 		var operation = elm.attr('data-operation');
 		
 		if (this.operation || operation == '=') {
@@ -63,7 +76,27 @@
 	};
 	
 	Calculator.prototype._performOperation = function() {
+		var operation = Calculator.OPERATIONS[this.operation];
 		
+		if (!operation) {
+			return;
+		}
+		
+		$('button').prop('disabled', true)
+		
+		var self = this;
+		
+		$.post('/api/' + operation, {
+			operands: this.operands
+		}, function(data) {
+			if (data.result) {
+				self._updateDisplay(data.result);
+				self.operands = [data.result];
+			}
+		}, 'json').always(function() {
+			$('button').prop('disabled', false);
+			self.operation = '';
+		});
 	};
 	
 	Calculator.prototype._updateDisplay = function(text) {
