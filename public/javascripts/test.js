@@ -33,7 +33,7 @@
 			calculator._operationClicked(equalButton);
 			
 			calculator._performOperation().always(function() {
-				assert.equal(calculator.display.text(), result, val1 + " " + operation + " " + val2 + "returned expected result of " + result);
+				assert.equal(calculator.display.text(), result, val1 + " " + operation + " " + val2 + " returned expected result of " + result);
 				
 				w.QUnit.start();
 			});
