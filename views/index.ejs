@@ -3,6 +3,11 @@
 	<head>
 		<title></title>
 		<link rel="stylesheet" href="/stylesheets/style.css">
+		<script>
+			if (location.hash == '#test') {
+				document.write('/stylesheets/vendor/qunit-1.14.0.css');
+			}
+		</script>
 	</head>
 	<body>
 		<div id="calculator">
@@ -45,5 +50,12 @@
 				new Calculator();
 			});
 		</script>
+		
+		<script>
+			if (location.hash == '#test') {
+				document.write('<script src="javascripts/vendor/qunit-1.14.0.js"></script>');
+				docuemtn.write('<script src="javascripts/tests.js"></script>');
+			}
+		</script
 	</body>
 </html>
