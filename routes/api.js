@@ -36,15 +36,15 @@ API.prototype._performOperation = function(req, res) {
 };
 
 API.prototype._performOperationForRequest = function(req) {
-	var name = path.basename(req.path);
-	var operation = this.operations[req.paga];
+	var name = req.params.name;
+	var operation = this.operations[name];
 	var operands = req.body.operands;
 	
 	return operation(operands[0], operands[1]);
 };
 
 API.prototype._operationExistsForRequest = function(req) {
-	var name = path.basename(req.path);
+	var name = req.params.name;
 	
 	return (this.operations[name] !== undefined);
 };
