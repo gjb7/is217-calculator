@@ -59,6 +59,7 @@
 			var operand = Number(this.currentValue);
 			this.operands.push(operand);
 			this.currentValue = '';
+			this.currentValueHasDecimal = false;
 		}
 		
 		var operation = elm.attr('data-operation');
@@ -90,6 +91,7 @@
 			operands: this.operands
 		}, function(data) {
 			if (data.result) {
+				self.result = data.result;
 				self._updateDisplay(data.result);
 				self.operands = [data.result];
 			}
