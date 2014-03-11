@@ -86,7 +86,7 @@
 		
 		var self = this;
 		
-		$.post('/api/' + operation, {
+		return $.post('/api/' + operation, {
 			operands: this.operands
 		}, function(data) {
 			if (data.result) {
