@@ -97,3 +97,12 @@ body {
 	background: rgb(51, 129, 255);
 	border: 1px solid rgb(16, 43, 160);
 }
+
+/**
+ * Tests
+ */
+
+#qunit {
+	margin-top: 20px;
+	width: 600px;
+}
