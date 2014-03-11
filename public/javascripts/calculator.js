@@ -3,7 +3,6 @@
 		this._setupDefaults();
 		this._captureDisplay();
 		this._registerEventListeners();
-		
 	};
 	
 	Calculator.OPERATIONS = {
